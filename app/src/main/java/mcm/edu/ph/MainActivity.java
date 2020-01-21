@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
         if (!isExternalStorageAvailable() || isExternalStorageReadOnly()) {
-            buttonWrite.setEnabled(false);
+            btnwrite.setEnabled(false);
         }
 
     }
