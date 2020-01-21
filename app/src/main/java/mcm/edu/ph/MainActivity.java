@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+import android.os.Environment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -86,6 +87,24 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+        if (!isExternalStorageAvailable() || isExternalStorageReadOnly()) {
+            buttonWrite.setEnabled(false);
+        }
+
+    }
+    private static boolean isExternalStorageReadOnly() {
+        String extStorageState = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState)) {
+            return true;
+        }
+        return false;
     }
 
+    private static boolean isExternalStorageAvailable() {
+        String extStorageState = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(extStorageState)) {
+            return true;
+        }
+        return false;
+    }
 }
